@@ -1,1 +1,36 @@
-Hello =)
+{% load  staticfiles %}
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spark</title>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+<form action="#" method="post" class="form">
+    {% csrf_token %}
+    <div class="input-group search">
+        <input class="form-control"
+               id="search"
+               maxlength="100"
+               name="name"
+               placeholder="Введите название рецепта"
+               required="required"
+               title="Введите название рецепта"
+               type="text"/>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary search_button">
+            {% bootstrap_icon "search" %} Найти
+        </button>
+      </span>
+    </div>
+
+</form>
+<div id="results"></div>
+</body>
+</html>
