@@ -6,14 +6,16 @@
     <title>Поиск рецепта</title>
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     {# Load CSS and JavaScript #}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <script type="text/javascript" src="{% static 'js/utils.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 </head>
-<body>
-<form action="#" method="post" class="form">
+<body ng-app="app" ng-controller="recipes_controller">
+<form class="form" ng-submit="search()">
     {% csrf_token %}
     <div class="input-group search">
         <input class="form-control"
@@ -23,7 +25,7 @@
                placeholder="Введите название рецепта"
                required="required"
                title="Введите название рецепта"
-               type="text"/>
+               type="text" ng-model="query"/>
       <span class="input-group-btn">
         <button type="submit" class="btn btn-primary search_button">
             {% bootstrap_icon "search" %} Найти
@@ -32,6 +34,18 @@
     </div>
 
 </form>
-<div id="results"></div>
+
+<ul class="recipes">
+    <div class="recipe" ng-repeat="recipe in recipes">
+        {% verbatim %}{{ recipe.name }}{% endverbatim %}
+        <ul>
+            <li class="ingredient" ng-repeat="ingredient in recipe.ingredients">
+                {% verbatim %}{{ ingredient }}{% endverbatim %}
+            </li>
+        </ul>
+
+    </div>
+</ul>
+
 </body>
 </html>
