@@ -20,6 +20,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.staticfiles',
     'bootstrap3',
+    'recipes',
 )
 
 MIDDLEWARE_CLASSES = (
