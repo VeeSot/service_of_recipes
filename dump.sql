@@ -809,6 +809,29 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 51	2016-03-19 10:57:18.488093+05	20	Яйцо куриное "Среднеуральское"	1		9	1
 52	2016-03-19 10:57:21.89285+05	13	Яйцо куриное	2	Изменен variants.	8	1
 53	2016-03-19 10:58:12.679534+05	14	Укроп	1		8	1
+54	2016-03-19 13:28:35.130077+05	1	Романо с моцареллой и черри Cалат	2	Изменен name.	7	1
+55	2016-03-19 13:28:57.483766+05	1	Романо с моцареллой и черри cалат	2	Изменен name.	7	1
+56	2016-03-19 13:35:19.804614+05	1	Романо с моцареллой и черри	2	Изменен name.	7	1
+57	2016-03-19 13:36:15.420886+05	1	Романо с моцареллой и черри салат	2	Изменен name.	7	1
+58	2016-03-19 13:36:34.908144+05	1	Романо с моцареллой и черри	2	Изменен name.	7	1
+59	2016-03-19 16:44:59.860251+05	4	Фруктовый салат с арбузом и сливами	1		7	1
+60	2016-03-19 16:45:25.415805+05	15	корица	1		8	1
+61	2016-03-19 16:45:45.22856+05	16	Сливы	1		8	1
+62	2016-03-19 16:46:07.894143+05	17	Мёд	1		8	1
+63	2016-03-19 16:46:23.177445+05	18	Арбуз	1		8	1
+64	2016-03-19 16:46:37.667507+05	15	Корица	2	Изменен name.	8	1
+65	2016-03-19 16:47:32.628595+05	5	Салат с консервированным лососем и сельдереем	1		7	1
+66	2016-03-19 16:48:43.770946+05	19	Лимонный сок	1		8	1
+67	2016-03-19 16:49:20.611386+05	20	Стебель сельдерея	1		8	1
+68	2016-03-19 16:50:28.230534+05	10	Соль	2	Изменен recipes.	8	1
+69	2016-03-19 16:50:34.040866+05	12	Майонез	2	Изменен recipes.	8	1
+70	2016-03-19 16:50:42.641111+05	14	Укроп	2	Изменен recipes.	8	1
+71	2016-03-19 16:51:22.804908+05	6	Салат «Мимоза» с рыбой	1		7	1
+72	2016-03-19 16:52:32.220709+05	21	Сыр "Российский"	1		8	1
+73	2016-03-19 16:53:09.255164+05	22	Лук репчатый	1		8	1
+74	2016-03-19 16:53:26.254736+05	13	Яйцо куриное	2	Изменен recipes.	8	1
+75	2016-03-19 16:53:54.647286+05	23	Рыба	1		8	1
+76	2016-03-19 16:54:00.835167+05	12	Майонез	2	Изменен recipes.	8	1
 \.
 
 
@@ -816,7 +839,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: recipe
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 53, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 76, true);
 
 
 --
@@ -891,12 +914,21 @@ COPY ingredients (id, name) FROM stdin;
 2	Помидоры черри
 8	Мята
 9	Лук зеленый
-10	Соль
 11	Огурец
 4	Крабовые палочки
-12	Майонез
-13	Яйцо куриное
+16	Сливы
+17	Мёд
+18	Арбуз
+15	Корица
+19	Лимонный сок
+20	Стебель сельдерея
+10	Соль
 14	Укроп
+21	Сыр "Российский"
+22	Лук репчатый
+13	Яйцо куриное
+23	Рыба
+12	Майонез
 \.
 
 
@@ -904,7 +936,7 @@ COPY ingredients (id, name) FROM stdin;
 -- Name: ingredients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: recipe
 --
 
-SELECT pg_catalog.setval('ingredients_id_seq', 14, true);
+SELECT pg_catalog.setval('ingredients_id_seq', 23, true);
 
 
 --
@@ -921,13 +953,27 @@ COPY ingredients_recipes (id, ingredient_id, recipe_id) FROM stdin;
 22	2	2
 23	8	2
 24	9	2
-25	10	3
 27	11	3
 28	4	1
 29	4	3
-30	12	3
-32	13	3
-33	14	3
+35	16	4
+36	17	4
+37	18	4
+38	15	4
+39	19	5
+40	20	5
+41	10	3
+42	10	5
+45	14	3
+46	14	5
+47	21	6
+48	22	6
+49	13	3
+50	13	6
+51	23	6
+52	12	3
+53	12	5
+54	12	6
 \.
 
 
@@ -935,7 +981,7 @@ COPY ingredients_recipes (id, ingredient_id, recipe_id) FROM stdin;
 -- Name: ingredients_recipes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: recipe
 --
 
-SELECT pg_catalog.setval('ingredients_recipes_id_seq', 33, true);
+SELECT pg_catalog.setval('ingredients_recipes_id_seq', 54, true);
 
 
 --
@@ -955,8 +1001,8 @@ COPY ingredients_variants (id, ingredient_id, variantofingredient_id) FROM stdin
 18	11	15
 19	4	6
 20	4	7
-21	13	19
-22	13	20
+23	13	19
+24	13	20
 \.
 
 
@@ -964,7 +1010,7 @@ COPY ingredients_variants (id, ingredient_id, variantofingredient_id) FROM stdin
 -- Name: ingredients_variants_id_seq; Type: SEQUENCE SET; Schema: public; Owner: recipe
 --
 
-SELECT pg_catalog.setval('ingredients_variants_id_seq', 22, true);
+SELECT pg_catalog.setval('ingredients_variants_id_seq', 24, true);
 
 
 --
@@ -972,9 +1018,12 @@ SELECT pg_catalog.setval('ingredients_variants_id_seq', 22, true);
 --
 
 COPY recipes (id, name) FROM stdin;
-1	Романо с моцареллой и черри
 2	Быстрый салат из маринованных артишоков
 3	Крабовый салат с огурцом и зеленым луком
+1	Романо с моцареллой и черри
+4	Фруктовый салат с арбузом и сливами
+5	Салат с консервированным лососем и сельдереем
+6	Салат «Мимоза» с рыбой
 \.
 
 
@@ -982,7 +1031,7 @@ COPY recipes (id, name) FROM stdin;
 -- Name: recipes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: recipe
 --
 
-SELECT pg_catalog.setval('recipes_id_seq', 3, true);
+SELECT pg_catalog.setval('recipes_id_seq', 6, true);
 
 
 --
