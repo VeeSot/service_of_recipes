@@ -5,7 +5,6 @@ angular.module('app', [])
         $scope.search = function () {
             $http.post('/search/', {query: $scope.query}).success(
                 function (response) {
-
                     $scope.recipes = response;
                 })
         };
